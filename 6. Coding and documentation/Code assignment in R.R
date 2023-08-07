@@ -1,6 +1,5 @@
-
 # Sets the path to the parent directory of RR classes
-setwd("Z:\\File folders\\Teaching\\Reproducible Research\\2023\\Repository\\RRcourse2023\\6. Coding and documentation")
+setwd("C:\\Users\\Sana.1778446\\Documents\\Ex6RR\\RRcourse2023\\6. Coding and documentation")
 
 #   Import data from the O*NET database, at ISCO-08 occupation level.
 # The original data uses a version of SOC classification, but the data we load here
