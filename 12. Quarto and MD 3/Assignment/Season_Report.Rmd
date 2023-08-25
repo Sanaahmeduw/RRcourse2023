@@ -1,0 +1,16 @@
+---
+title: "Game of Thrones - Season `r params$season_number` Report"
+author: "Sana Ahmed"
+date: today
+output: pdf_document
+params:
+  season_number: 1
+---
+```{r}
+# Load data for the current season
+load(paste0("season_", params$season_number, ".RData"))
+```
+***
+### Summary r params$season_number
+
+Season `r params$season_number` of Game of Thrones consisted of `r nrow(season_data)` episodes that aired between `r season_data$start_date[1]` and `r season_data$end_date[length(season_data)]` on HBO. The show gathered an average of `r season_data$avg_first_day_viewers` first-day TV viewers from the US, with the number growing from `r season_data$viewers[1]` to `r season_data$viewers[length(season_data)]` million by the end of the season.
