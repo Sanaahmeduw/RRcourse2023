@@ -1,0 +1,68 @@
+---
+title: "Meta-Analysis Report"
+author: "Sana Ahmed"
+date: "August 17, 2023"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+
+```{r}
+# Set CRAN mirror to a specific location
+options(repos = "https://cran.rstudio.com/")  # Replace with an appropriate CRAN mirror URL
+```
+
+# Load required packages
+```{r}
+library(readxl)
+install.packages("meta")
+library(meta)
+library(tidyr)
+library(dplyr)
+```
+
+# Read the Excel data
+```{r}
+read_excel("C:\\Users\\Sana.1778446\\Documents\\Retake RR\\metaanalysis_data.xlsx") -> stu.meta
+stu.meta %>% names()
+```
+```{r}
+stu.meta %>% 
+  select(Study,
+         Mean_girls_play_female,
+         Mean_girls_play_male,
+         SD_girls_play_female,
+         SD_girls_play_male,
+         N_girls,
+         Year) -> subdata
+```
+
+# Perform meta-analysis
+```{r}
+metagen( 
+  data = subdata,
+  TE = Mean_girls_play_male,
+  seTE = SD_girls_play_male,
+  n.e = N_girls,
+  studlab = Study
+) -> model
+model
+```
+
+# Generate forest plot
+```{r}
+model %>% forest(sortvar = Year)
+```
+
+# Generate funnel plot
+```{r}
+model %>% funnel(bg = "#E4E88F",
+                 studlab = TRUE,
+                 cex.studlab = 0.4,
+                 level = 0.95,
+                 contour = c(0.9, 0.95, 0.99),
+                 col.contour = c("#7E9379", "#61821B", '#B4E6A8'))
+```
