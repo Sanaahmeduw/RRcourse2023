@@ -1,0 +1,69 @@
+---
+title: "TV SHOW Report"
+author: "Sana Ahmed 457997"
+date: "2023-08-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Brief Description of the TV Show
+
+*Suits* is an American television drama series created by *Aaron Korsh*, which premiered on June 23, 2011 on the USA Network. It revolves around *Mike Ross* (Patrick J. Adams), who begins working as a law associate for *Harvey Specter* (Gabriel Macht), despite never attending law school. The show focuses on *Harvey* and *Mike* managing to close cases, while maintaining *Mike's* secret.
+
+## Logo or Shot from the Show
+
+![*figure: 1* TV Show Logo](C:\\Users\\Sana.1778446\\Documents\\Retake RR\\Logo suits.jpg)
+
+## Basic Statistics
+```{r, echo=FALSE}
+# Load necessary libraries
+library(ggplot2)
+
+### Create a sample data frame
+data <- data.frame(Column1 = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"),
+                   Column2 = c(4.64, 3.89, 4.53, 4.38, 4.38, 4.44, 4.03, 3.96, 4.45, 3.82, 3.96, 3.47))
+```
+```{r, echo=FALSE}
+library(knitr)
+# Your data
+your_data <- data.frame(
+  Stats = c("Mean", "Median", "SD", "Min", "Max", "Range"),
+  Results = c(4.1625, 4.205, 0.340101088, 3.47, 4.64, 1.17))
+
+# Create a table
+kable(your_data, format = "html")
+```
+## Viewership Overtime 
+```{r, echo=FALSE}
+### Create a bar plot
+ggplot(data, aes(x = Column1, y = Column2, fill = Column1)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Bar Plot of Values in Column 2",
+       x = "Episodes",
+       y = "Viewers in Millions") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Viewership Changes (Episode-to-episode)
+```{r, echo=FALSE}
+### Create a sample data frame
+my_data <- data.frame(Series_Name = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"),
+                      Values = c(-0.75, 0.64, -0.15, 0, 0.06, -0.41, -0.07, 0.49, -0.63, 0.14, -0.49))
+
+# Create a single color line plot
+ggplot(my_data, aes(x = Series_Name, y = Values, group = 1)) +
+  geom_line(color = "blue") +
+  geom_point(color = "blue") +
+  labs(title = "Single Color Line Plot of Values",
+       x = "Episodes",
+       y = "Change in Viewership") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Brief Description of the TV Show
+Viewership declined by "0.75" million from episode "1" to 2. Somehow, *Suits* could regain its viewership back between episode 6 and 7 by increase of 0.06 million viewers.
